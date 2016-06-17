@@ -1,0 +1,159 @@
+1.Given an array of ints length 6, return an array with the elements "rotated left" by given count.
+  example
+        arr=[1,2,3,4,5,6]
+    rotate_left([1,2,3,4,5,6],2) → [3,4,5,6,1,2]
+    rotate_left([1,2,3,4,5,6],4) → [5,6,1,2,3,4]    
+
+def rotate_left(arr,len):
+    pass
+
+
+
+#solution 1:-
+
+
+from fractions import gcd
+a = []
+n = input("enter how many numbers u want")
+print("enter numbers into list")
+
+for i in range(n):
+    a.append(input())
+
+d = input("enter the no of iterations")
+
+g = gcd(n , d)
+
+for i in range(g):
+    temp = a[i]
+    j = i
+    while 1:
+        k = j+d
+        if k>=n:
+            k=k-n
+        if k==i:
+            break
+        a[j] = a[k]
+        j=k
+    a[j] = temp
+
+
+print(a)
+
+#solution 2
+
+
+i = 0
+input1 = []
+x = input("enter how many numbers u want in the list")
+
+print("enter the list of numbers")
+
+for i in range(x):
+    input1.append(input())
+print(input1)
+m = input("enter number for rotations")
+i = 0
+for i in range(m):
+    temp = input1[0]
+    for b in range(0,x-1,1):
+        input1[b] = input1[b+1]
+    input1[x-1]=temp
+print(input1)
+        
+        
+
+1.Given an array of ints length 6, return an array with the elements "rotated right" by given count.
+   arr=[1,2,3,4,5,6]
+   rotate_right([1,2,3,4,5,6],2) → [5,6,1,2,3,4]
+   rotate_right([1,2,3,4,5,6],4) → [3,4,5,6,1,2]
+
+def rotate_right(arr,len):
+    pass
+
+
+#solution:-
+
+i = 0
+input1 = []
+x = input("enter how many numbers u want in the list")
+
+print("enter the list of numbers")
+
+for i in range(x):
+    input1.append(input())
+print(input1)
+m = input("enter number for rotations")
+i = 0
+for i in range(m):
+    temp = input1[x-1]
+    for b in range(x-1,0,-1):
+        input1[b] = input1[b-1]
+    input1[0]=temp
+print(input1)
+        
+        
+
+
+
+Given an array of ints, return array of max 3 elements in the array.
+(don’t use sort builtin function)
+  arr=[8,0,5,15,2,13,7,10]
+    output:
+    max array=[15,13,10]
+  
+def max_3(arr):
+    pass
+
+
+#solution:-
+
+
+
+i = 0
+a = 3
+input1 = []
+output = []
+x = input("enter how many numbers u want")
+for i in range(x):
+    input1.append(input())
+
+
+print ("given input is")
+print (input1)
+
+t1 = input1[0]
+t2 = input1[1]
+t3 = input1[2]
+
+if t1 < t2:
+    temp = t1
+    t1 = t2
+    t2 = temp
+if t1 <t3:
+    temp = t1
+    t1 = t3
+    t3 = temp
+if t2 < t3:
+    temp = t2
+    t2 = t3
+    t3 = temp
+
+print (t1,t2,t3)
+
+while a < x :
+    if t1 < input1[a]:
+        t3 = t2
+        t2 = t1
+        t1 = input1[a]
+    elif t2 < input1[a]:
+         t3=t2
+         t2 = input1[a]
+    elif t3 < input1[a]:
+         t3 = input1[a]
+    a+=1
+
+print t1,t2,t3
+output = [t1,t2,t3]
+print (output)        
+        
