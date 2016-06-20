@@ -6,9 +6,10 @@ temp=[]
 for i in range(0,l,1):
     temp.append(arr[len(arr)-l+i])
 
-for i in range(0,4,1):
-    print(i,i+l)
-    arr[i+l]=arr[i]
+for i in range(5,0,-1):
+    arr[i]=arr[i-l]
 
 for i in range(0,l,1):
     arr[i]=temp[i]
+
+print(arr)
