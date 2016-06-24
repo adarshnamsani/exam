@@ -5,7 +5,22 @@ def get_odds_list(count):
      This method returns a list of the first 'count' odd numbers in descending
      order. e.g count = 3 should return [5,3,1]
     """
-    return None
+    count=int(count)
+    L=[]
+
+    if count == 0:
+        return L
+
+    elif count == 1:
+        return [1]
+
+    elif count > 1:
+        for x in range(1,2*count+1):
+            if x%2!=0:
+                L.append(x)
+        return L[::-1]
+
+
 
 
 def get_odd_mountain(count):
@@ -16,7 +31,21 @@ def get_odd_mountain(count):
 
     Hint: use the list functions and a builtin function we have already seen.
     """
-    return None
+    l=[]
+    if count==0:
+        return []
+
+    else :
+        for x in range(count):
+            if x%2!=0:
+                l.append(x)
+        for x in range(count,0,-1):
+            if x%2!=0:
+                l.append(x)
+        return l
+
+
+
 
 def get_multiples_desc(number, count):
     """
@@ -26,31 +55,64 @@ def get_multiples_desc(number, count):
 
     Hint: one line of code, use a builtin function we have already seen in the lists lesson.
     """
-    return None
+    l=[]
+
+    if count==0:
+        return l
+    elif count>0 and number>0:
+        for x in range(1,count+1):
+            l.append(number*x)
+        return sorted(l,reverse=True)
+
+
 
 def get_sorted_diff_string(first, second):
     """
     returns a string which contains letters in first but not in second.
     e.g.s apple and pig returns ael.
     """
-    return None
+    x=set(first)
+    y=set(second)
+    z=x.difference(y)
+    l=list(z)
+    l.sort()
+    return "".join(l)
+
+
 
 def get_sorted_without_duplicates(input):
     """
     returns a string in which characters are sorted and duplicates removed
     e.g apple returns aelp, engine returns egin
     """
-    return None
+    x=set(input)
+    l=[]
+    if x=={}:
+        return
+    elif x!=None:
+        for k in x:
+            l.append(k)
+    l.sort()
+    return "".join(l)
 
 def create_palindrome(word):
-    pass
+    if word==None:
+        return None
+    elif word==[]:
+        return []
+    elif word!=None:
+         return word+word[::-1]
 
 
 # Sort the words that are passed in by word length instead of word content.
 # e.g ["apple", "dog", "elephant"] should result in ["elephant", "apple", "dog"]
 # hint: use list.sort, don't write your own
 def sort_by_length(words):
-    pass
+    if words==None:
+        return None
+    else:
+        return sorted(words, key=len, reverse=True)
+
 
 def test_odds_list():
     assert [1] == get_odds_list(1)
