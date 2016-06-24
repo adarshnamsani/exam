@@ -58,8 +58,8 @@ public class LazyAdapter extends BaseAdapter {
 
         ImageView image=(ImageView)vi.findViewById(R.id.image);
         model data = getItem(position);
-        text.setText(data.getName());
-        text1.setText("" + data.getPrice());
+        text.setText("Name:"+data.getName());
+        text1.setText("Price:" + data.getPrice());
         text2.setText(data.getDes());
         imageLoader.DisplayImage(data.getUrl(), image);
 

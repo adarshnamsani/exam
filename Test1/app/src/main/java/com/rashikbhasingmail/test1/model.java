@@ -14,14 +14,14 @@ public class model {
     String url;
     String des;
     int price;
-    ArrayList<ArrayList<String>> urls;
+   // ArrayList<ArrayList<String>> urls;
 
-    public model(String name, String url, int price, String des,ArrayList<String> arr){
+    public model(String name, String url, int price, String des){
             this.name = name;
             this.url = url;
             this.des = des;
             this.price = price;
-            this.urls.add(arr);
+            //this.urls.add(arr);
     }
 
     public String getName() {
@@ -40,7 +40,7 @@ public class model {
         return price;
     }
 
-    public ArrayList<ArrayList<String>> getUrls(){
-        return urls;
-    }
+//    public ArrayList<ArrayList<String>> getUrls(){
+//        return urls;
+//    }
 }

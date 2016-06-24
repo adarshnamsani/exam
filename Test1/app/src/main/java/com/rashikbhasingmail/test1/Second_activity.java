@@ -29,7 +29,7 @@ public class Second_activity extends AppCompatActivity {
         String message = bundle.getString("mylist");
         RelativeLayout layout=(RelativeLayout)findViewById(R.id.content);
 //
-//       // imageLoader=new ImageLoader(this);
+        imageLoader=new ImageLoader(this);
         String name="";
         String price="";
         String des="";
@@ -65,30 +65,18 @@ public class Second_activity extends AppCompatActivity {
                 url=curr;
             }
         }
-//
-//      ImageView image=(ImageView)findViewById(R.id.image1);
+
+       // ImageView image=(ImageView)findViewById(R.id.image1);
         TextView t1=(TextView)findViewById(R.id.text11);
         TextView t2=(TextView)findViewById(R.id.text22);
         TextView t3=(TextView)findViewById(R.id.text33);
 
-//
-        t1.setText(name);
-        t2.setText(price);
-        t3.setText(des);
-//
-//
-//      //  RelativeLayout a=new RelativeLayout(this);
-//        //imageLoader.DisplayImage(data.getUrl(), image);
-////
-//
-//
-//        TextView t=new TextView(this);
-//        t.setText(name);
-//
-//        layout.addView(t);
 
-//        layout.addView(t2);
-//        layout.addView(t3);
+        t1.setText("Name:"+name);
+        t2.setText("Price:"+price);
+        t3.setText(des);
+        //imageLoader.DisplayImage("http://all4desktop.com/data_images/original/4238719-nature-background.jpg", image);
+
 
     }
 
