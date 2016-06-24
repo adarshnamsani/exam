@@ -137,6 +137,7 @@ def test_create_palindrome():
         assert "" == create_palindrome("")
         assert "" == create_palindrome("")
 
+
 def test_sort_by_length():
     assert ["apple", "bear", "dog"] == sort_by_length(["dog", "apple", "bear"])
     assert ["apple", "bear", "dog"] == sort_by_length(["apple", "dog",  "bear"])
