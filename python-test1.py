@@ -36,13 +36,10 @@ def get_multiples_desc(number, count):
 
     Hint: one line of code, use a builtin function we have already seen in the lists lesson.
     """
-    l = []
     if count == 0:
-        return l
+        return []
     else:
-        for i in range(count,0,-1):
-            l.append(number*i)
-        return l
+        return [i*number for i in range(count,0,-1)]
 
 def get_sorted_diff_string(first, second):
     """
