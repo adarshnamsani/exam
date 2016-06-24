@@ -31,16 +31,13 @@ def get_odd_mountain(count):
     if count == 0:
         return l
     else:
-        while i <= count:
-            if i % 2 != 0:
-                l.append(i)
-            i += 1
-        count -= 1
-        while count > 0:
-             if count % 2 != 0:
-                  l.append(count)
-             count -= 1
-        return l
+        for i in range(1,count+1,2):
+            l.append(i)
+        if count%2 == 0:
+            return l+l[::-1]
+        else:
+            return l+l[-2::-1]
+
 
 def get_multiples_desc(number, count):
     """
@@ -54,24 +51,16 @@ def get_multiples_desc(number, count):
     if count == 0:
         return l
     else:
-        while count > 0:
-            l.append(number*count)
-            count -= 1
+        for i in range(count,0,-1):
+            l.append(number*i)
         return l
-
-    return None
 
 def get_sorted_diff_string(first, second):
     """
     returns a string which contains letters in first but not in second.
     e.g.s apple and pig returns ael.
     """
-    st1 = set(first)
-    st2 = set(second)
-    st = list(set(st1)-set(st2))
-    st4 = sorted(st)
-    st3 = ''.join(st4)
-    return st3
+    return ''.join(sorted(set(first)-set(second)))
 
 
 def get_sorted_without_duplicates(input):
@@ -79,17 +68,13 @@ def get_sorted_without_duplicates(input):
     returns a string in which characters are sorted and duplicates removed
     e.g apple returns aelp, engine returns egin
     """
-    st1 = set(input)
-    st1 = sorted(st1)
-    st2 = ''.join(st1)
-    return st2
+    return ''.join(sorted(set(input)))
 
 def create_palindrome(word):
     if word == None:
         return None
-    x = word[::-1]
-    z = word+x
-    return z
+    else:
+        return word+word[::-1]
 
 
 # Sort the words that are passed in by word length instead of word content.
@@ -99,8 +84,7 @@ def sort_by_length(words):
     if words == None:
         return None
     else:
-        strs = sorted(words, key = len, reverse=True)
-        return strs
+        return sorted(words, key = len, reverse=True)
 
 def sample(words):
     return True
