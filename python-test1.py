@@ -1,21 +1,11 @@
 from placeholders import *
-import math
-from collections import OrderedDict
 
 def get_odds_list(count):
     """
      This method returns a list of the first 'count' odd numbers in descending
      order. e.g count = 3 should return [5,3,1]
     """
-    l = []
-    a = count
-    count = count * 2
-    while count > 0:
-        if count % 2 != 0:
-            l.append(count)
-        count -= 1
-
-    return l
+    return [i for i in range(count*2-1,0,-2)]
 
 
 def get_odd_mountain(count):
@@ -27,7 +17,6 @@ def get_odd_mountain(count):
     Hint: use the list functions and a builtin function we have already seen.
     """
     l = []
-    i = 1
     if count == 0:
         return l
     else:
