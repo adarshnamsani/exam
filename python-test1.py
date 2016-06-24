@@ -53,24 +53,7 @@ def get_multiples_desc(number, count):
 
 
 def get_sorted_diff_string(first, second):
-    len1 = len(first)
-    len2 = len(second)
-    if len1 >len2 :
-        len2 = len1
-    else :
-        len1 = len2
-    z = ""
-    for i in range(0,len1):
-        for j in range(0,len2):
-            if first[i] == second[j]:
-               break
-            elif flag != 1:
-                z.append(first[i])
-
-
-    k = sorted(z)
-    k = "".join(k)
-    return k
+    return "".join(sorted(set(first)-set(second)))
 
 
     """
