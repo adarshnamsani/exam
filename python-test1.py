@@ -1,11 +1,31 @@
 from placeholders import *
-
+import math
+import sys
+import collections
 def get_odds_list(count):
     """
      This method returns a list of the first 'count' odd numbers in descending
      order. e.g count = 3 should return [5,3,1]
     """
-    return None
+    j=1
+    a=[]
+    b=[]
+    k=0
+    if count==0:
+        return a
+    elif count==1:
+        a.append(1)
+        return a
+    else:
+        for i in range(0,count):
+            a.append(j)
+            j=j+2
+        for i in range(count-1,-1,-1):
+            #b[k]=a[i]
+            #k=k+1
+            b.append(a[i])
+    return b
+    #return None
 
 
 def get_odd_mountain(count):
@@ -16,7 +36,31 @@ def get_odd_mountain(count):
 
     Hint: use the list functions and a builtin function we have already seen.
     """
-    return None
+    j=1
+    a=[]
+    if count%2==0:
+        for i in range(0,(count//2)):
+            a.append(j)
+            j=j+2
+        for i in range((count//2)-1,-1,-1):
+            a.append(a[i])
+        return a
+    elif(count%2!=0):
+        x=1
+        b=[]
+        c=[]
+        for i in range(0,(count//2)+1):
+            b.append(x)
+            x=x+2
+        for i in range(0,count//2):
+            c.append(b[i])
+        for i in range(len(c)-1,-1,-1):
+            b.append(c[i])
+        return b
+
+
+
+
 
 def get_multiples_desc(number, count):
     """
@@ -26,31 +70,86 @@ def get_multiples_desc(number, count):
 
     Hint: one line of code, use a builtin function we have already seen in the lists lesson.
     """
-    return None
+    a=[]
+    if count==0:
+        return a
+    else:
+        for i in range(count,0,-1):
+            x=number*i
+            a.append(x)
+        return a
 
 def get_sorted_diff_string(first, second):
     """
     returns a string which contains letters in first but not in second.
     e.g.s apple and pig returns ael.
     """
-    return None
-
+    xy=""
+    if(first== second):
+        return xy
+    elif(len(first)==0 and len(second)!=0):
+        b = "".join(collections.OrderedDict.fromkeys(second))
+        d=''.join(sorted(b))
+        return d
+    elif (len(first) != 0 and len(second) == 0):
+        b = "".join(collections.OrderedDict.fromkeys(first))
+        d=''.join(sorted(b))
+        return d
+    else:
+        k=0
+        c=[]
+        flag=0
+        for i in range(0,len(first)):
+            for j in range(0,len(second)):
+                if(first[i]!=second[j]):
+                    flag=1
+                else:
+                    flag=0
+                    break
+            if(flag==1):
+            #c[k]=first[i]
+            #k=k+1
+                c.append(first[i])
+    d=''.join(sorted(c))
+    return d
 def get_sorted_without_duplicates(input):
     """
     returns a string in which characters are sorted and duplicates removed
     e.g apple returns aelp, engine returns egin
     """
-    return None
-
+    b="".join(collections.OrderedDict.fromkeys(input))
+    c=''.join(sorted(b))
+    return c
 def create_palindrome(word):
-    pass
-
-
+    b=[]
+    c=[]
+    if(word==None):
+        return None
+    #pass
+    else:
+        a=word
+        b=a[::-1]
+        c=a+b
+        return c
 # Sort the words that are passed in by word length instead of word content.
 # e.g ["apple", "dog", "elephant"] should result in ["elephant", "apple", "dog"]
 # hint: use list.sort, don't write your own
 def sort_by_length(words):
-    pass
+ if(words):
+      n=len(words)
+      a=[]
+      if(n==0):
+          return a
+      elif(words==None):
+          return None
+      else:
+        for i in range(0,n):
+              for j in range(0,n):
+                  if(len(words[i])>len(words[j])):
+                      (words[i],words[j])=(words[j],words[i])
+      #f=" ".join(sorted(words))
+        return words
+ return words
 
 def test_odds_list():
     assert [1] == get_odds_list(1)
