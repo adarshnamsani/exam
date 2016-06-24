@@ -1,8 +1,5 @@
 package com.rashikbhasingmail.test1;
 
-/**
- * Created by rashik on 24/6/16.
- */
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
@@ -17,29 +14,31 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 public class LazyAdapter extends BaseAdapter {
 
-    private Activity activity;
+    private Activity context;
     //private String[] data;
 
-    JSONArray jsonArray;
+    List<model> listData;
 
     private static LayoutInflater inflater=null;
     public ImageLoader imageLoader;
 
-    public LazyAdapter(Activity a,  JSONArray j) {
-        activity = a;
-        jsonArray=j;
-        inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        imageLoader=new ImageLoader(activity.getApplicationContext());
+    public LazyAdapter(Activity context,  List<model> listData) {
+        this.context = context;
+        this.listData = listData;
+        inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        imageLoader=new ImageLoader(context.getApplicationContext());
     }
 
     public int getCount() {
-        return jsonArray.length();
+        return listData.size();
     }
 
-    public Object getItem(int position) {
-        return position;
+    public model getItem(int position) {
+        return listData.get(position);
     }
 
     public long getItemId(int position) {
@@ -55,22 +54,15 @@ public class LazyAdapter extends BaseAdapter {
 
         TextView text1=(TextView)vi.findViewById(R.id.text1);
 
-        ImageView image=(ImageView)vi.findViewById(R.id.image);
-//        text.setText("item "+position);
-//        imageLoader.DisplayImage(data[position], image);
-        for(int i=0;i<jsonArray.length();i++)
-        {
-            try {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String name = jsonObject.optString("name").toString();
-                String desc = jsonObject.optString("Desc").toString();
-                text.setText(name);
-                text1.setText(desc);
+        TextView text2=(TextView)vi.findViewById(R.id.text2);
 
-                imageLoader.DisplayImage(jsonObject.getString("url"), image);
-            }
-            catch(JSONException e) {e.printStackTrace();}
-        }
+        ImageView image=(ImageView)vi.findViewById(R.id.image);
+        model data = getItem(position);
+        text.setText(data.getName());
+        text1.setText("" + data.getPrice());
+        text2.setText(data.getDes());
+        imageLoader.DisplayImage(data.getUrl(), image);
+
         return vi;
     }
 }
