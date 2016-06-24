@@ -46,7 +46,6 @@ def get_odd_mountain(count):
 
 
 
-
 def get_multiples_desc(number, count):
     """
     return the first count multiples of number in desc order in a list.
