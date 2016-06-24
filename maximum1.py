@@ -4,7 +4,7 @@ n=3
 dup=100
 
 while n:
-    max=0
+    max=arr[0]
     for i in arr:
         if(i>max and i<dup):
             max=i
