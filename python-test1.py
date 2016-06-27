@@ -1,11 +1,17 @@
 from placeholders import *
 
+
 def get_odds_list(count):
     """
      This method returns a list of the first 'count' odd numbers in descending
      order. e.g count = 3 should return [5,3,1]
     """
-    return None
+    c = []
+
+    for i in range( 2*count-1,0,-2):
+        c.append(i)
+
+    return c
 
 
 def get_odd_mountain(count):
@@ -16,7 +22,31 @@ def get_odd_mountain(count):
 
     Hint: use the list functions and a builtin function we have already seen.
     """
-    return None
+
+
+    c = []
+    j = 0
+    x = 0
+    if count % 2 == 0:
+        for i in range(0, 2 * count):
+            if j != count / 2 and i % 2 != 0:
+                c.append(i)
+                j += 1
+        x = len(c)
+        for x in range(x, count):
+            c.append(c[count - x - 1])
+
+    else:
+        for i in range(0, 2 * count):
+            if j != int(count / 2) + 1 and i % 2 != 0:
+                c.append(i)
+                j += 1
+        x = len(c)
+        for x in range(x, count):
+            c.append(c[count - x - 1])
+
+    return c
+
 
 def get_multiples_desc(number, count):
     """
@@ -26,49 +56,92 @@ def get_multiples_desc(number, count):
 
     Hint: one line of code, use a builtin function we have already seen in the lists lesson.
     """
-    return None
+
+    c = []
+    for n in range(1, count + 1):
+        x = number
+        x = x * n
+        c.append(x)
+    c.reverse()
+
+    return c
+
 
 def get_sorted_diff_string(first, second):
     """
     returns a string which contains letters in first but not in second.
     e.g.s apple and pig returns ael.
     """
-    return None
+
+    a=set(first)
+    b=set(second)
+
+    l=sorted(a-b)
+    c=''.join(l)
+    return c
+
 
 def get_sorted_without_duplicates(input):
     """
     returns a string in which characters are sorted and duplicates removed
     e.g apple returns aelp, engine returns egin
+
     """
-    return None
+
+    x=set(input)
+
+    l=''.join(sorted(x))
+    return l
+
 
 def create_palindrome(word):
-    pass
+    if word!=None:
+        a=[]
+        b = list(word)
+        c = list(word)
+        c.reverse()
+
+        c = b + c
+        a = ''.join(c)
+
+        return a
+    else:
+        return None
 
 
 # Sort the words that are passed in by word length instead of word content.
 # e.g ["apple", "dog", "elephant"] should result in ["elephant", "apple", "dog"]
 # hint: use list.sort, don't write your own
 def sort_by_length(words):
-    pass
+
+
+    if words!=None:
+        c=sorted(words, key=len, reverse=True)
+        return c
+    else:
+
+        return None
+
 
 def test_odds_list():
     assert [1] == get_odds_list(1)
     assert [] == get_odds_list(0)
-    assert [5,3,1] == get_odds_list(3)
-    assert [9,7,5,3,1] == get_odds_list(5)
+    assert [5, 3, 1] == get_odds_list(3)
+    assert [9, 7, 5, 3, 1] == get_odds_list(5)
+
 
 def test_get_odd_mountain():
-    assert [1,1] == get_odd_mountain(2)
-    assert [1,3,1] == get_odd_mountain(3)
-    assert [1,3,5,7,5,3,1] == get_odd_mountain(7)
+    assert [1, 1] == get_odd_mountain(2)
+    assert [1, 3, 1] == get_odd_mountain(3)
+    assert [1, 3, 5, 7, 5, 3, 1] == get_odd_mountain(7)
     assert [] == get_odd_mountain(0)
 
+
 def test_get_multiples_desc():
-    assert [6,3] == get_multiples_desc(3,2)
-    assert [15, 10, 5] == get_multiples_desc(5,3)
+    assert [6, 3] == get_multiples_desc(3, 2)
+    assert [15, 10, 5] == get_multiples_desc(5, 3)
     assert [] == get_multiples_desc(6, 0)
-    assert [3,2,1] == get_multiples_desc(1, 3)
+    assert [3, 2, 1] == get_multiples_desc(1, 3)
 
 
 def test_sorted_diff_string():
@@ -84,15 +157,17 @@ def test_sorted_without_duplicates():
     assert "" == get_sorted_without_duplicates("")
     assert "abcd" == get_sorted_without_duplicates("abcdabcd")
 
+
 def test_create_palindrome():
-        assert "battab" == create_palindrome("bat")
-        assert "abba" == create_palindrome("ab")
-        assert "" == create_palindrome("")
-        assert None == create_palindrome(None)
+    assert "battab" == create_palindrome("bat")
+    assert "abba" == create_palindrome("ab")
+    assert "" == create_palindrome("")
+    assert None == create_palindrome(None)
+
 
 def test_sort_by_length():
     assert ["apple", "bear", "dog"] == sort_by_length(["dog", "apple", "bear"])
-    assert ["apple", "bear", "dog"] == sort_by_length(["apple", "dog",  "bear"])
+    assert ["apple", "bear", "dog"] == sort_by_length(["apple", "dog", "bear"])
     assert ["apple", "dog", "cat"] == sort_by_length(["dog", "apple", "cat"])
     assert ["elephant", "apple"] == sort_by_length(["apple", "elephant"])
     assert ["three", "four", "one", "two"] == sort_by_length(["one", "two", "three", "four"])
