@@ -5,7 +5,16 @@ def get_odds_list(count):
      This method returns a list of the first 'count' odd numbers in descending
      order. e.g count = 3 should return [5,3,1]
     """
-    return None
+    c=[]
+
+    i=0
+    for i in range(0,(2*count)+1):
+        if i%2!=0:
+            c.append(i)
+    c.reverse()
+    return c
+
+
 
 
 def get_odd_mountain(count):
@@ -16,7 +25,24 @@ def get_odd_mountain(count):
 
     Hint: use the list functions and a builtin function we have already seen.
     """
-    return None
+    c=[]
+    d=[]
+    i=0
+
+    for i in range(0,(count+1)):
+        if i%2!=0:
+            c.append(i)
+    if count%2==0:
+        c=c+c[::-1]
+    if count%2!=0:
+        d=c[:-1]
+        d.reverse()
+        c=c+d
+    return c
+
+
+
+
 
 def get_multiples_desc(number, count):
     """
@@ -26,31 +52,68 @@ def get_multiples_desc(number, count):
 
     Hint: one line of code, use a builtin function we have already seen in the lists lesson.
     """
-    return None
+    c=[]
+    i=1
+    for i in range(1,count+1):
+        c.append(i*number)
+
+    c.reverse()
+    return c
+
+
+
 
 def get_sorted_diff_string(first, second):
     """
     returns a string which contains letters in first but not in second.
     e.g.s apple and pig returns ael.
     """
-    return None
+    c=set(first)
+    d=set(second)
+    e=set(c-d)
+    f=''.join(sorted(e))
+    return f
+
 
 def get_sorted_without_duplicates(input):
     """
     returns a string in which characters are sorted and duplicates removed
     e.g apple returns aelp, engine returns egin
     """
-    return None
+    c = set(input)
+
+    d = ''.join(sorted(c))
+
+    return d
+
 
 def create_palindrome(word):
-    pass
+
+
 
 
 # Sort the words that are passed in by word length instead of word content.
 # e.g ["apple", "dog", "elephant"] should result in ["elephant", "apple", "dog"]
 # hint: use list.sort, don't write your own
+
+
+    if word!=None:
+        c=list(word)
+        d=list(word)
+        d.reverse()
+        c=c+d
+        c=''.join(c)
+        return c
+
 def sort_by_length(words):
-    pass
+
+    if words!= None:
+        c=list(words)
+        c.reverse()
+        d=sorted(c,key=len)
+        d.reverse()
+        return d
+
 
 def test_odds_list():
     assert [1] == get_odds_list(1)
