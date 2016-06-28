@@ -74,7 +74,7 @@ def square_16(num1, num2):
 
 
 def permutation_18(list1):
-    return (itertools.permutations([list1]))
+    return  [x for x in itertools.permutations(list1) ]
 
 
 def get_diff_19(list1, list2):
@@ -195,3 +195,4 @@ def test_append_list_24():
 
 def test_random_25():
     assert  "True" == random_25([1,2,3,4,5,6,7,8,9,10])
+
