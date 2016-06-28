@@ -16,6 +16,7 @@
             android:layout_alignParentStart="true"/>
 
 
+
         <TableLayout
             android:id="@+id/table1"
             android:layout_width="fill_parent"
@@ -57,8 +58,47 @@
 
         <HorizontalScrollView
             android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:layout_below="@+id/table1"
+            android:id="@+id/horz1"
+            android:layout_marginTop="5dp">
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout_gridtableLayout"
+                    android:layout_width="875dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <GridView
+                        android:id="@+id/grid"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:columnWidth="100dp"
+                        android:gravity="center"
+                        android:rowCount="3"
+                        android:horizontalSpacing="1dp"
+                        android:scrollbarAlwaysDrawHorizontalTrack="true"
+                        android:scrollbarAlwaysDrawVerticalTrack="true"
+                        android:scrollbars="horizontal"
+                        android:stretchMode="none"
+                        android:verticalSpacing="1dp">
+
+                    </GridView>
+
+
+                </LinearLayout>
+            </FrameLayout>
+        </HorizontalScrollView>
+
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/table1"
+            android:layout_below="@id/horz1"
             android:layout_marginTop="5dp"
             android:background="#33FFFC"
             android:id="@+id/horizontal_scroll">

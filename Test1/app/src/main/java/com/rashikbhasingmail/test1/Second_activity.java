@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -96,6 +97,10 @@ public class Second_activity extends AppCompatActivity {
 
         TextView t4=(TextView)findViewById(R.id.text333);
         t4.setText(data.getDelivery());
+
+        GridView gridview = (GridView)findViewById(R.id.grid);
+        gridview.setNumColumns(8);
+        gridview.setAdapter(new ImageAdapter(this));
 
 
         layout = (LinearLayout) findViewById(R.id.imageGallery);
