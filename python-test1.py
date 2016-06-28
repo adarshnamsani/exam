@@ -1,26 +1,12 @@
 from placeholders import *
 
+
 def get_odds_list(count):
     """
      This method returns a list of the first 'count' odd numbers in descending
      order. e.g count = 3 should return [5,3,1]
     """
-    count=int(count)
-    L=[]
-
-    if count == 0:
-        return L
-
-    elif count == 1:
-        return [1]
-
-    elif count > 1:
-        for x in range(1,2*count+1):
-            if x%2!=0:
-                L.append(x)
-        return L[::-1]
-
-
+    return [x for x in range(2*count-1, 0,-2)]
 
 
 def get_odd_mountain(count):
@@ -30,19 +16,21 @@ def get_odd_mountain(count):
     odd_mountain of size 4 is [1,3,3,1]
 
     Hint: use the list functions and a builtin function we have already seen.
-    """
-    l=[]
-    if count==0:
-        return []
 
-    else :
+    l = []
+    if count == 0:
+        return []
+    else:
         for x in range(count):
-            if x%2!=0:
+            if x % 2 != 0:
                 l.append(x)
-        for x in range(count,0,-1):
-            if x%2!=0:
-                l.append(x)
-        return l
+    for x in range(count, 0, -1):
+        if x % 2 != 0:
+            l.append(x)
+    return l"""
+    def is_odd(x):
+        return x%2!= 0
+    return [x for x in range(1,count,2) ]+[x for x in range(count,0,-1) if is_odd(x)]
 
 
 
@@ -53,83 +41,86 @@ def get_multiples_desc(number, count):
     call with input(5,3) returns [15,10, 5]
 
     Hint: one line of code, use a builtin function we have already seen in the lists lesson.
-    """
-    l=[]
 
-    if count==0:
+    l = []
+
+    if count == 0:
         return l
-    elif count>0 and number>0:
-        for x in range(1,count+1):
-            l.append(number*x)
-        return sorted(l,reverse=True)
+    elif count > 0 and number > 0:
+        for x in range(1, count + 1):
+            l.append(number * x)
+        return sorted(l, reverse=True)"""
 
-
+    return [x for x in range(number*count,0,-number)]
 
 def get_sorted_diff_string(first, second):
     """
     returns a string which contains letters in first but not in second.
     e.g.s apple and pig returns ael.
-    """
-    x=set(first)
-    y=set(second)
-    z=x.difference(y)
-    l=list(z)
-    l.sort()
-    return "".join(l)
 
+    x = set(first)
+    y = set(second)
+    z = x.difference(y)
+    l = list(z)
+    l.sort()
+    return "".join(l)"""
+
+    l=sorted(list(set(first).difference(set(second))))
+    return "".join(l)
 
 
 def get_sorted_without_duplicates(input):
     """
     returns a string in which characters are sorted and duplicates removed
     e.g apple returns aelp, engine returns egin
-    """
-    x=set(input)
-    l=[]
-    if x=={}:
+
+    x = set(input)
+    l = []
+    if x == {}:
         return
-    elif x!=None:
+    elif x != None:
         for k in x:
             l.append(k)
     l.sort()
-    return "".join(l)
+    return "".join(l)"""
+
+    return "".join(sorted(list(set(input))))
+
 
 def create_palindrome(word):
-    if word==None:
-        return None
-    elif word==[]:
-        return []
-    elif word!=None:
-         return word+word[::-1]
+    if word:
+        return word + word[::-1]
+    return word
 
 
 # Sort the words that are passed in by word length instead of word content.
 # e.g ["apple", "dog", "elephant"] should result in ["elephant", "apple", "dog"]
 # hint: use list.sort, don't write your own
 def sort_by_length(words):
-    if words==None:
-        return None
-    else:
+    if words:
         return sorted(words, key=len, reverse=True)
+    return words
 
 
 def test_odds_list():
     assert [1] == get_odds_list(1)
     assert [] == get_odds_list(0)
-    assert [5,3,1] == get_odds_list(3)
-    assert [9,7,5,3,1] == get_odds_list(5)
+    assert [5, 3, 1] == get_odds_list(3)
+    assert [9, 7, 5, 3, 1] == get_odds_list(5)
+
 
 def test_get_odd_mountain():
-    assert [1,1] == get_odd_mountain(2)
-    assert [1,3,1] == get_odd_mountain(3)
-    assert [1,3,5,7,5,3,1] == get_odd_mountain(7)
+    assert [1, 1] == get_odd_mountain(2)
+    assert [1, 3, 1] == get_odd_mountain(3)
+    assert [1, 3, 5, 7, 5, 3, 1] == get_odd_mountain(7)
     assert [] == get_odd_mountain(0)
 
+
 def test_get_multiples_desc():
-    assert [6,3] == get_multiples_desc(3,2)
-    assert [15, 10, 5] == get_multiples_desc(5,3)
+    assert [6, 3] == get_multiples_desc(3, 2)
+    assert [15, 10, 5] == get_multiples_desc(5, 3)
     assert [] == get_multiples_desc(6, 0)
-    assert [3,2,1] == get_multiples_desc(1, 3)
+    assert [3, 2, 1] == get_multiples_desc(1, 3)
 
 
 def test_sorted_diff_string():
@@ -145,15 +136,17 @@ def test_sorted_without_duplicates():
     assert "" == get_sorted_without_duplicates("")
     assert "abcd" == get_sorted_without_duplicates("abcdabcd")
 
+
 def test_create_palindrome():
-        assert "battab" == create_palindrome("bat")
-        assert "abba" == create_palindrome("ab")
-        assert "" == create_palindrome("")
-        assert None == create_palindrome(None)
+    assert "battab" == create_palindrome("bat")
+    assert "abba" == create_palindrome("ab")
+    assert "" == create_palindrome("")
+    assert None == create_palindrome(None)
+
 
 def test_sort_by_length():
     assert ["apple", "bear", "dog"] == sort_by_length(["dog", "apple", "bear"])
-    assert ["apple", "bear", "dog"] == sort_by_length(["apple", "dog",  "bear"])
+    assert ["apple", "bear", "dog"] == sort_by_length(["apple", "dog", "bear"])
     assert ["apple", "dog", "cat"] == sort_by_length(["dog", "apple", "cat"])
     assert ["elephant", "apple"] == sort_by_length(["apple", "elephant"])
     assert ["three", "four", "one", "two"] == sort_by_length(["one", "two", "three", "four"])
