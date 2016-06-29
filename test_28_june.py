@@ -20,6 +20,14 @@ def palindrome_4(name):
     return name == name[::-1]
 
 
+def first_last_5(list):
+    count = 0
+    for element in list:
+        if len(element) > 2 and element[0] == element[-1]:
+            count += 1
+    return count
+
+
 def sorted_list_6(list):
     return sorted(list, key= lambda tuples: tuples[-1])
 
@@ -42,6 +50,9 @@ def clone_list_9(list):
       return list[:]
 
 
+def split_len_10(str, n):
+    list = str.split( )
+    return [x for x in list if len(x) > n]
 
 def common_number_11(list1,list2):
     if (len(list(set(list1)&set(list2))))>0:
@@ -72,6 +83,9 @@ def shuffle_15(list):
 def square_16(num1, num2):
     return [x * x for x in range(num1, num2+1) if x < 6 or x > 25]
 
+def square_17(num1, num2):
+    return [x*x for x in range(num1, num2+1) if x > 5]
+
 
 def permutation_18(list1):
     return  [x for x in itertools.permutations(list1) ]
@@ -80,6 +94,9 @@ def permutation_18(list1):
 def get_diff_19(list1, list2):
     return [x for x in list1 if x not in list2]
 
+
+def index_list_20(list):
+    return [(x,y) for x,y in enumerate(list)]
 
 def conver_string_21(list):
     return ''.join(list)
@@ -110,7 +127,8 @@ def random_25(list):
         return "False"
 
 
-
+def circular_26(list1,list2):
+    return  (' '.join(map(str, list2)) in ' '.join(map(str, list1 * 2)))
 
 def test_sum_list_1():
     assert 55 == sum_list_1([1,2,3,4,5,6,7,8,9,10])
@@ -129,6 +147,10 @@ def test_palindrome_4():
     assert False == palindrome_4("hello")
 
 
+def test_first_last_5():
+    assert  3 == first_last_5(["aba","1231", "madam", "a", "b"])
+
+
 def test_sorted_list_6():
     assert([(2, 1), (1, 2), (2, 3), (4, 4), (2, 5)]) == sorted_list_6( [(2, 5), (1, 2), (4, 4), (2, 3), (2, 1)])
     assert ([]) ==  sorted_list_6([])
@@ -145,6 +167,10 @@ def test_empty_or_not_8():
 
 def test_clone_list_9():
     assert ([1,2,3,4,5,6]) == clone_list_9([1,2,3,4,5,6])
+
+
+def test_split_len_10():
+    assert ["quick","brown","jumps","over","lazy"] == split_len_10("The quick brown fox jumps over the lazy dog", 3)
 
 
 def test_common_number_11():
@@ -169,6 +195,11 @@ def test_square_16():
     assert  [1, 4, 9, 16, 25, 676, 729, 784, 841, 900] == square_16(1,30)
 
 
+
+def test_square_17():
+    assert [36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400, 441, 484, 529, 576, 625, 676, 729, 784, 841, 900] == square_17(1,30)
+
+
 def test_permutation_18():
     assert [(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)] == permutation_18([1,2,3])
 
@@ -176,6 +207,10 @@ def test_get_diff_19():
     assert ([4,5])  == get_diff_19(([1,2,3,4,5]),[1,2,3])
     assert ([]) == get_diff_19([], [])
     assert (["raghu","shweta","srihari"]) == get_diff_19(["adarsh","raghu","bhanu","sanjay","shweta","srihari"],["adarsh","bhanu","sanjay"])
+
+
+def test_index_list_20():
+    assert [(0, 5),(1, 6),(2, 7),(3, 8),(4, 9)] == index_list_20([5,6,7,8,9])
 
 
 def test_conver_string_21():
@@ -196,3 +231,7 @@ def test_append_list_24():
 def test_random_25():
     assert  "True" == random_25([1,2,3,4,5,6,7,8,9,10])
 
+
+def test_circular_26():
+    assert True == circular_26([10, 10, 0, 0, 10],[10, 10, 10, 0, 0])
+    assert  False == circular_26([[10, 10, 10, 0, 0]],[1, 10, 10, 0, 0])
