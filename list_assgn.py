@@ -113,7 +113,7 @@ Expected Result : 2
 def first_equals_last(l):
     if l:
         count=0
-        for i in range(0,len(l),1):
+        for i in range(0,len(l)):
             if len(l[i]) > 2:
                 if l[i][0] == l[i][len(l[i])-1]:
                     count +=1
@@ -139,8 +139,8 @@ Expected Result : [(2, 1), (1, 2), (2, 3), (4, 4), (2, 5)]
 
 def last_ele_sort(l):
     if l:
-        for i in range(0,len(l),1):
-            for j in range(i+1,len(l),1):
+        for i in range(0,len(l)):
+            for j in range(i+1,len(l)):
                 if l[i][1] > l[j][1]:
                     l[j],l[i] = l[i],l[j]
         return l
@@ -228,7 +228,7 @@ def longer_n(s,n):
         l=[]
         indices=[]
         l=s.split(" ")
-        for i in range(0,len(l),1):
+        for i in range(0,len(l)):
             if len(l[i]) <= n:
                indices.append(i)
         l=[i for j, i in enumerate(l) if j not in indices]
@@ -299,8 +299,8 @@ def remove_non_alpha(s):
     if s:
         indices=[]
         l=list(s)
-        for i in range(0,len(l),1):
-            if (l[i] < unichr(48)  or (l[i] > unichr(57)) and (l[i] < unichr(65)) or (l[i] > unichr(90)) and (l[i] < unichr(97)) or l[i] > unichr(122)):
+        for i in range(0,len(l)):
+            if (l[i] < unichr(65) or (l[i] > unichr(90) and l[i] < unichr(97)) or l[i] > unichr(122)):
                 indices.append(i)
         l=[i for j, i in enumerate(l) if j not in indices]
         s="".join(l)
@@ -311,8 +311,8 @@ def remove_non_alpha(s):
 
 
 def test_remove_non_alpha():
-    assert("apple123")==remove_non_alpha("@apple#123!")
-    assert("123a")==remove_non_alpha("123!@#$%%a")
+    assert("apple")==remove_non_alpha("@apple#123!")
+    assert("xqa")==remove_non_alpha("123xq!@#$%%a")
     assert("")==remove_non_alpha("!@#$%%")
     assert None==remove_non_alpha("")
 
@@ -326,7 +326,7 @@ def test_remove_non_alpha():
 def remove_even(l):
     if l:
         indices=[]
-        for i in range(0,len(l),1):
+        for i in range(0,len(l)):
             if l[i]%2 == 0:
                 indices.append(i)
         l=[i for j, i in enumerate(l) if j not in indices]
@@ -469,7 +469,7 @@ def test_diff_lists():
 def access_index(l):
     if l:
         s=[]
-        for i in range(0,len(l),1):
+        for i in range(0,len(l)):
             s.append([i,l[i]])
 
         return s
@@ -508,7 +508,7 @@ def test_list_to_str():
 
 def item_index(l,item):
     if l:
-        for i in range(0,len(l),1):
+        for i in range(0,len(l)):
             if l[i] == item:
                 return i
 
@@ -533,7 +533,7 @@ def test_item_index():
 def remove_adj_dup(l):
     if l:
         indices=[]
-        for i in range(0,len(l)-1,1):
+        for i in range(0,len(l)-1):
             if l[i] == l[i+1]:
                 indices.append(i)
         l=[i for j, i in enumerate(l) if j not in indices]
@@ -601,7 +601,7 @@ def circular_identity(l1,l2):
     l1=collections.deque(l1)
     l2=collections.deque(l2)
 
-    for i in range(0,len(l1),1):
+    for i in range(0,len(l1)):
         if l1 == l2:
             return True
 
