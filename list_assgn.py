@@ -2,6 +2,7 @@ from placeholders import *
 import itertools
 import random
 from random import randint
+import collections
 
 
 ################################
@@ -596,18 +597,15 @@ Compare list1 and list2 returns True
 Compare list1 and list3 return False
 '''
 
-
-
 def circular_identity(l1,l2):
-    for j in range(0,len(l1),1):
-        i=0
-        temp=l1[0]
-        while i < len(l1)-1:
-            l1[i]=l1[i+1]
-            i +=1
-        l1[i]=temp
+    l1=collections.deque(l1)
+    l2=collections.deque(l2)
+
+    for i in range(0,len(l1),1):
         if l1 == l2:
             return True
+
+        l1.rotate(i)
 
     return False
 
