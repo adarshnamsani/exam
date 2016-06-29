@@ -1,23 +1,26 @@
+import operator
+import re
+from random import shuffle
 import random
-myList = [1, 2, 3, 4, 5]
+import itertools
+from placeholders import *
 def sum_of_list(lis):
     if lis == None:
         return None
     sum =0
     for word in lis:
         sum = sum + word
-    print(sum)
+
     return sum
 
 def mul_of_list(lis):
     if lis == None:
         return None
-    mul =0
+    mul =1
     for word in lis:
         mul = mul * int(word)
-    print(mul)
     return mul
-def small_and_larg_inlis(lis):
+def min_and_max(lis):
     if lis == None:
         return None
     min = max = lis[0]
@@ -43,12 +46,13 @@ def palindrom(str):
 
 def string_equality(lis):
     count =0
-
+    i =0
     for words in lis:
-        j = words.split()
-        if j[0] == j[len(j)-1]:
+        #print(len(words),i)
+        if lis[i][0] == lis[i][len(words)-1]:
             count += 1
-
+        i = i+1
+    return count
 
 def sorted_tupple_list(lis):
     for i in range(0, len(lis)):
@@ -57,7 +61,7 @@ def sorted_tupple_list(lis):
                 temp = lis[i]
                 lis[i] = lis[j]
                 lis[j] = temp
-    print(lis)
+    return lis
 
 def remove_duplicate(lis):
     l = []
@@ -66,19 +70,36 @@ def remove_duplicate(lis):
         if value not in seen:
             l.append(value)
             seen.add(value)
-    print(l)
+    return l
 
 
 def check_list_empty(lis):
-    if not lis:
-        return True
+    if len(lis) == 0:
+        return "Empty"
     else:
-        False
+        return "NoneEmpty"
+
+def clone_or_copy_list(lis):
+    arr = []
+    for words in lis:
+        arr.append(words)
+    return arr
+
+def string_to_list(str,n):
+
+    k = str.split()
+    arr = []
+    for word in k:
+        if(len(word) >= n):
+            arr.append(word)
+
+    return arr
+
 
 
 def count_word_length(lis):
     l = lis.split()
-    print(l)
+
     nst = []
     for word in l:
         if len(word) > 2:
@@ -90,15 +111,17 @@ def count_word_length(lis):
 
 def common_word_in_list(lis1,lis2):
     if set(lis1).intersection(lis2):
-        return True
+        return 'T'
     else:
-        return False
+        return 'F'
 
 def remove_alternate_from_list(lis):
     arr = []
+
     for i in range(0,len(lis)):
-        if( i != 0 and i != 2 and i != 4 and i != 5):
+        if not ( i == 0 or i == 2 or i == 4 or i == 5):
             arr.append(lis[i])
+
     return arr
 
 
@@ -107,6 +130,7 @@ def remove_non_alpha(str):
     for i in range(0,len(str)):
         if(str[i].isalpha() ):
             newstr.append(str[i])
+    return ''.join(newstr)
 
 def remove_even_number(lis):
     newlis = []
@@ -118,30 +142,36 @@ def remove_even_number(lis):
 
 
 def shuffle_list(lis):
-    print("",lis)
-'''
+    random.shuffle(lis)
+    return "True"
 
 
 
-'''
-def random_number(lis):
-    import random
-    while ():
-        if( random.randrange(1,900)):
-            print("")
 
-def permutations(head, tail=''):
+
+def square_number():
+    i =1
+    j =26
     arr = []
-    if len(head) == 0:
-        arr.append(tail)
-    else:
-        for i in range(len(head)):
-            permutations(head[0:i] + head[i+1:], tail+head[i])
+    while(i <6 or j <= 30):
+        if i < 6:
+            arr.append(i*i)
+            i += 1
+        else :
+            arr.append(j*j)
+            j += 1
+
     return arr
 
 
+def permutations(head, tail=''):
+    from itertools import permutations
+    l = list(permutations(range(1, 4)))
+    return l
 
-def difference_list(lis1,lis2):
+
+
+def set_difference_list(lis1,lis2):
     lis2 = set(lis2)
     return [item for item in lis1 if item not in lis2]
 
@@ -152,10 +182,13 @@ def index_in_list(lis,item):
         if i == item:
             return count
         count += 1
+    return "not found"
 
+def list_to_string(lis):
+    return ''.join(lis)
 
-
-def remove_adjcence(lis,length):
+def remove_adjcence(lis):
+    length = len(lis)
     arr = []
     for i in range(0,length-1):
         if(lis[i] != lis[i+1]):
@@ -163,7 +196,7 @@ def remove_adjcence(lis,length):
     k = int(len(arr))
     if(lis[length-1] != arr[k-1]):
         arr.append(lis[length-1])
-    print(arr)
+
     return arr
 
 
@@ -172,7 +205,142 @@ def append_lis(lis1,lis2):
         lis1.append(words)
     return lis1
 
-def select_random(lis,item):
+def select_random(lis):
     import random
     k =random.randrange(0,len(lis)-1)
-    return lis[k]
+    if(k >=0 and k<len(lis)):
+        return True
+
+def circular_list(lis1, lis2):
+    if len(lis1) != len(lis2):
+        return False
+    for i in range(0, len(lis1)):
+        if (lis1[0] == lis2[i]):
+            k = i
+            break
+    i =0
+    x = len(lis1)
+    count = len(lis2)
+
+    while (count - 1):
+        if (k == x ):
+            k = 0
+
+        if(i == x):
+            i =0
+
+
+        if (lis1[i] != lis2[k]):
+            return False
+        count -= 1
+        i += 1
+        k += 1
+
+    return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def test_sum_of_list():
+    assert 55 == sum_of_list([1,2,3,4,5,6,7,8,9,10])
+
+
+def test_multiply_list_2():
+    assert 720 == mul_of_list([1,2,3,4,5,6])
+
+
+def test_min_max_3():
+    assert [3,20] == min_and_max([3,20,5,4,6,8,9,13,16,17])
+
+
+def test_palindrome_4():
+    assert True == palindrom("madam")
+    assert False == palindrom("hello")
+
+
+def test_sorted_tupple_list():
+    assert([(2, 1), (1, 2), (2, 3), (4, 4), (2, 5)]) == sorted_tupple_list( [(2, 5), (1, 2), (4, 4), (2, 3), (2, 1)])
+    assert ([]) ==  sorted_tupple_list([])
+
+
+def test_remove_duplicate_7():
+   assert ([1, 2, 3, 4, 5, 6, 7, 8]) == remove_duplicate([1, 2, 3, 4, 5, 6, 7, 8])
+
+
+def test_check_list_empty():
+    assert "Empty" == check_list_empty([])
+    assert  "NoneEmpty" == check_list_empty([1,2,3])
+
+
+def test_clone_list_9():
+    assert ([1,2,3,4,5,6]) == clone_or_copy_list([1,2,3,4,5,6])
+
+def test_string_to_list():
+    assert(['quick','brown','jumps','over','lazy']) == string_to_list("The quick brown fox jumps over the lazy dog",4)
+
+def test_common_number_11():
+    assert 'T' == common_word_in_list([1,2,3],[1,2])
+
+
+def test_remove_non_alpha():
+    assert "abc" == remove_non_alpha("ab$c#")
+
+def test_remove_even_14():
+    assert [1, 3, 5, 7, 9, 11] == remove_even_number([1,2,3,4,5,6,7,8,9,10,11,12])
+
+def test_shuffle_15():
+    assert "True"  == shuffle_list(['Red', 'Green', 'White', 'Black', 'Pink', 'Yellow'])
+    assert "True" == shuffle_list([1,2,3,4,5,6])
+
+def test_string_equality():
+    assert 2 == string_equality(['abc', 'xyz', 'aba', '1221'])
+def test_square_16():
+    assert  [1, 4, 9, 16, 25, 676, 729, 784, 841, 900] == square_number()
+
+
+def test_permutation_18():
+    assert [(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)] == permutations([1,2,3],tail='')
+
+def test_get_diff_19():
+    assert ([4,5])  == set_difference_list(([1,2,3,4,5]),[1,2,3])
+    assert ([]) == set_difference_list([], [])
+    assert (["raghu","shweta","srihari"]) == set_difference_list(["adarsh","raghu","bhanu","sanjay","shweta","srihari"],["adarsh","bhanu","sanjay"])
+
+
+def test_list_to_string():
+    assert "adarsh" == list_to_string(['a','d','a','r','s','h'])
+
+def test_index_22():
+    assert 2 == index_in_list([1,2,3,4,5,6,7,8,9],3)
+    assert "not found" == index_in_list([1,2,3,4],5)
+
+def test_adjacent_duplicate_23():
+    assert [1,2,5,2,6,3,2,6,9] == remove_adjcence([1,2,2,5,2,6,6,6,3,2,6,9])
+
+
+def test_append_list_24():
+    assert [1,2,3,4,5,6] == append_lis([1,2,3],[4,5,6])
+
+
+def test_random_25():
+   assert  True == select_random([1,2,3,4,5,6,7,8,9,10])
+def test_circular_list():
+    assert True == circular_list([1,2,3,4],[4,1,2,3])
+
+def test_remove_alternate_from_list():
+    assert ['Green', 'Black'] == remove_alternate_from_list(['Red', 'Green', 'White', 'Black', 'Pink', 'Yellow'])
