@@ -7,8 +7,10 @@ from string import digits
 
 '''1. Write a Python program to sum all the items in a list.'''
 def add(a):
-    b=sum(a)
-    return b
+   b=0
+   for i in a:
+       b=b+i
+   return b
 
 def test_add():
     assert 15==add([1,2,3,4,5])
@@ -26,17 +28,28 @@ def test_product():
     assert 120==product([1,2,3,4,5])
     assert 24==product([1,2,3,4])
 
- '''3. Write a Python program to get the largestand smallest number from a list. '''
+'''3. Write a Python program to get the largestand smallest number from a list. '''
 
 def lar_sma(a):
-    b=[]
-    b.append(min(a))
-    b.append(max(a))
-    return b
+    b=a[0]
+    c=[]
+    e=a[:]
+    for i in range (0,len(a)):
+        if b<e[i]:
+            b,e[i]=e[i],b
+    c.append(b)
+    d=a
+    b=d[0]
+    for j in range (0,len(a)):
+        if b>d[i]:
+            b,d[i]=d[i],b
+    c.append(b)
+
+    return c
 
 def test_lar_sma():
-    assert [1,4]==lar_sma([1,2,3,4])
-    assert [11,14]==lar_sma([11,12,13,14])
+    assert [4,1]==lar_sma([1,2,3,4])
+    assert [14,11]==lar_sma([11,12,13,14])
 
 '''4. Write a Python program to find given string is a palindrome or not
    ex:madam returns True
