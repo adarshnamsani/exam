@@ -212,8 +212,21 @@ def test_minmax15():
 ########################################################################################################################
 '''
 16. Write a Python program to get a dictionary from an object's fields.
-
 '''
+
+def obj16():
+    class a(object):
+        def __init__(self):
+            self.dog=10
+            self.puppy=15
+
+        def do_nothing(self):
+            pass
+
+    return a().__dict__
+
+def test_obj16():
+    assert{'dog':10,'puppy':15}==obj16()
 
 ########################################################################################################################
 '''
