@@ -1,24 +1,19 @@
-import operator
-import re
-from random import shuffle
 import random
-import itertools
-from placeholders import *
 def sum_of_list(lis):
     if lis == None:
         return None
     sum =0
-    for word in lis:
-        sum = sum + word
+    for num in lis:
+        sum = sum + num
 
     return sum
 
-def mul_of_list(lis):
-    if lis == None:
+def mul_of_list(num_list):
+    if num_list == None:
         return None
     mul =1
-    for word in lis:
-        mul = mul * int(word)
+    for num in num_list:
+        mul = mul * int(num)
     return mul
 def min_and_max(lis):
     if lis == None:
@@ -36,27 +31,32 @@ def min_and_max(lis):
 
 
 def palindrom(str):
-    x = len(str) - 1;
-    for i in range(0, x):
+    x = len(str) - 1
+    print range(0, 4)
+    i =0
+    while i<x:
+        print i
         if str[i] != str[x]:
             return False
-        else:
-            x = x - 1
+        x = x - 1
+        i += 1
     return True
 
 def string_equality(lis):
     count =0
     i =0
-    for words in lis:
+    for word in lis:
         #print(len(words),i)
-        if lis[i][0] == lis[i][len(words)-1]:
-            count += 1
+        if len(word) >= 2:
+            #print word[0]
+            if lis[i][0] == lis[i][len(word)-1]:
+                count += 1
         i = i+1
     return count
 
 def sorted_tupple_list(lis):
     for i in range(0, len(lis)):
-        for j in range(0, len(lis)):
+        for j in range(0, i):
             if (lis[i][1] < lis[j][1]):
                 temp = lis[i]
                 lis[i] = lis[j]
@@ -65,11 +65,9 @@ def sorted_tupple_list(lis):
 
 def remove_duplicate(lis):
     l = []
-    seen = set()
     for value in lis:
-        if value not in seen:
+        if value not in l:
             l.append(value)
-            seen.add(value)
     return l
 
 
@@ -111,9 +109,9 @@ def count_word_length(lis):
 
 def common_word_in_list(lis1,lis2):
     if set(lis1).intersection(lis2):
-        return 'T'
+        return True
     else:
-        return 'F'
+        return False
 
 def remove_alternate_from_list(lis):
     arr = []
@@ -193,16 +191,15 @@ def remove_adjcence(lis):
     for i in range(0,length-1):
         if(lis[i] != lis[i+1]):
             arr.append(lis[i])
-    k = int(len(arr))
-    if(lis[length-1] != arr[k-1]):
-        arr.append(lis[length-1])
+
+    arr.append(lis[length-1])
 
     return arr
 
 
 def append_lis(lis1,lis2):
-    for words in lis2:
-        lis1.append(words)
+    for word in lis2:
+        lis1.append(word)
     return lis1
 
 def select_random(lis):
@@ -291,10 +288,10 @@ def test_clone_list_9():
     assert ([1,2,3,4,5,6]) == clone_or_copy_list([1,2,3,4,5,6])
 
 def test_string_to_list():
-    assert(['quick','brown','jumps','over','lazy']) == string_to_list("The quick brown fox jumps over the lazy dog",4)
+    assert(['quick','brown','jumps','over','lazy']) == string_to_list("The quick       brown fox jumps over        the lazy dog",4)
 
 def test_common_number_11():
-    assert 'T' == common_word_in_list([1,2,3],[1,2])
+    assert True == common_word_in_list([1,2,3],[1,2])
 
 
 def test_remove_non_alpha():
