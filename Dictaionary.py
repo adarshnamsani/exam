@@ -38,18 +38,19 @@ class DictaionaryManager():
 
     def main(self):
         print "1.Add new entry !\n2.Get Key by value !\n3.Get value by key !\n4.Update a key !\n5.delete entry from dictaionary! \n6.Exit"
+        di = Dictaionary(self.cd)
         while(True):
             choice = raw_input("Enter your Choice : ")
             if choice == '1':
                 self.create_dic()
             elif choice == '2':
-                print Dictaionary(self.cd).get_by_value(raw_input('enter the value : '))
+                print di.get_by_value(raw_input('enter the value : '))
             elif choice == '3':
-                print Dictaionary(self.cd).get_by_key(raw_input('enter the key : '))
+                print di.get_by_key(raw_input('enter the key : '))
             elif choice == '4':
-                Dictaionary(self.cd).update_key(raw_input('enter the existing key : '),raw_input('enter new key : '))
+                di.update_key(raw_input('enter the existing key : '),raw_input('enter new key : '))
             elif choice == '5':
-                Dictaionary(self.cd).delete_key(raw_input('enter the key : '))
+                di.delete_key(raw_input('enter the key : '))
             else:
                 return
 
