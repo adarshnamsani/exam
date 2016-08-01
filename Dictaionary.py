@@ -61,7 +61,7 @@ class Dictionary():
         for obj in self.dic:
             if obj.key == key:
                 li.append(obj.value)
-            obj.value = li
+                obj.value = li
 
 
 class DictionaryManager():
