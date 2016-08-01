@@ -56,9 +56,9 @@ class Dictionary():
                 return True
         return False
     def add_value_to_existing_key(self,key,value):
+        li = []
+        li.append(value)
         for obj in self.dic:
-            li = []
-            li.append(value)
             if obj.key == key:
                 li.append(obj.value)
             obj.value = li
